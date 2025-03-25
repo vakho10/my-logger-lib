@@ -2,20 +2,20 @@ package ge.edu.sangu;
 
 public class ConsoleLogger {
 
-    private static LoggingLevel DEFAULT_LEVEL = LoggingLevel.INFO;
+    private static Level DEFAULT_LEVEL = Level.INFO;
 
-    public static LoggingLevel getDefaultLevel() {
+    public static Level getDefaultLevel() {
         return DEFAULT_LEVEL;
     }
 
-    public static void setDefaultLevel(LoggingLevel defaultLevel) {
+    public static void setDefaultLevel(Level defaultLevel) {
         if (defaultLevel == null) {
             throw new IllegalArgumentException("Default logging level must not be null");
         }
         DEFAULT_LEVEL = defaultLevel;
     }
 
-    public void print(LoggingLevel level, String message) {
+    public void print(Level level, String message) {
         if (message == null || message.isBlank()) {
             throw new IllegalArgumentException("Log message must not be null or blank");
         }
@@ -26,14 +26,14 @@ public class ConsoleLogger {
     }
 
     public void debug(String message) {
-        print(LoggingLevel.DEBUG, message);
+        print(Level.DEBUG, message);
     }
 
     public void info(String message) {
-        print(LoggingLevel.INFO, message);
+        print(Level.INFO, message);
     }
 
     public void error(String message) {
-        print(LoggingLevel.ERROR, message);
+        print(Level.ERROR, message);
     }
 }

@@ -9,7 +9,7 @@ public class Launcher {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.print("Please enter default logging level. Choose from [DEBUG, INFO, ERROR]: ");
-                LoggingLevel defaultLoggingLevel = LoggingLevel.valueOf(scanner.nextLine());
+                Level defaultLoggingLevel = Level.valueOf(scanner.nextLine());
                 ConsoleLogger.setDefaultLevel(defaultLoggingLevel);
                 break;
             } catch (IllegalArgumentException e) {

@@ -1,5 +1,5 @@
 package ge.edu.sangu;
 
-public enum LoggingLevel {
+public enum Level {
     DEBUG, INFO, ERROR
 }
