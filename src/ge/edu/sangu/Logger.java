@@ -1,8 +1,16 @@
 package ge.edu.sangu;
 
-public class ConsoleLogger {
+import java.io.OutputStream;
+import java.io.PrintStream;
 
+public class Logger {
     private static Level DEFAULT_LEVEL = Level.INFO;
+
+    private final PrintStream out;
+
+    public Logger(OutputStream out) {
+        this.out = new PrintStream(out);
+    }
 
     public static Level getDefaultLevel() {
         return DEFAULT_LEVEL;
@@ -21,7 +29,7 @@ public class ConsoleLogger {
         }
         // Check if our level is the same or "more important" than default level
         if (DEFAULT_LEVEL.ordinal() <= level.ordinal()) {
-            System.out.println(message);
+            out.println(message);
         }
     }
 
