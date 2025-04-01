@@ -29,7 +29,7 @@ public class Logger {
         }
         // Check if our level is the same or "more important" than default level
         if (DEFAULT_LEVEL.ordinal() <= level.ordinal()) {
-            out.println(message);
+            out.println(level + ":" + message);
         }
     }
 
