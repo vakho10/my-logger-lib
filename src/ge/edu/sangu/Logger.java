@@ -42,7 +42,15 @@ public class Logger {
         print(Level.INFO, message);
     }
 
+    public void warn(String message) {
+        print(Level.WARN, message);
+    }
+
     public void error(String message) {
         print(Level.ERROR, message);
+    }
+
+    public void fatal(String message) {
+        print(Level.FATAL, message);
     }
 }
