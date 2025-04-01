@@ -1,7 +1,7 @@
 package ge.edu.sangu;
 
 public class Launcher {
-    private static final Logger log = new Logger(System.out);
+    private static final Logger log = new Logger(Level.DEBUG, System.out);
 
     public static void main(String[] args) {
         log.info("Application started.");
