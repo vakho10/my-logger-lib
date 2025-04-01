@@ -5,23 +5,27 @@ import java.io.PrintStream;
 import java.time.LocalDateTime;
 
 public class Logger {
-    private static Level DEFAULT_LEVEL = Level.INFO;
-
+    private Level level = Level.INFO;
     private final PrintStream out;
 
     public Logger(OutputStream out) {
         this.out = new PrintStream(out);
     }
 
-    public static Level getDefaultLevel() {
-        return DEFAULT_LEVEL;
+    public Logger(Level level, PrintStream out) {
+        this(out);
+        this.level = level;
     }
 
-    public static void setDefaultLevel(Level defaultLevel) {
-        if (defaultLevel == null) {
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        if (level == null) {
             throw new IllegalArgumentException("Default logging level must not be null");
         }
-        DEFAULT_LEVEL = defaultLevel;
+        this.level = level;
     }
 
     public void print(Level level, String message) {
@@ -29,7 +33,7 @@ public class Logger {
             throw new IllegalArgumentException("Log message must not be null or blank");
         }
         // Check if our level is the same or "more important" than default level
-        if (DEFAULT_LEVEL.ordinal() <= level.ordinal()) {
+        if (this.level.ordinal() <= level.ordinal()) {
             out.printf("%s [%s]: %s\n", LocalDateTime.now(), level, message);
         }
     }
