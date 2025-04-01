@@ -11,6 +11,8 @@ public class Launcher {
         } catch (RuntimeException e) {
             log.error(e.getMessage());
         }
+        Person willSmith = new Person("Will Smith", 56);
+        System.out.println(willSmith.getName());
         log.info("Application finished.");
     }
 }
