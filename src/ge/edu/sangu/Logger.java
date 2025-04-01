@@ -2,6 +2,7 @@ package ge.edu.sangu;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
 
 public class Logger {
     private static Level DEFAULT_LEVEL = Level.INFO;
@@ -29,7 +30,7 @@ public class Logger {
         }
         // Check if our level is the same or "more important" than default level
         if (DEFAULT_LEVEL.ordinal() <= level.ordinal()) {
-            out.println(level + ":" + message);
+            out.printf("%s [%s]: %s\n", LocalDateTime.now(), level, message);
         }
     }
 
