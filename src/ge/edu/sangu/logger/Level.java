@@ -1,4 +1,4 @@
-package ge.edu.sangu;
+package ge.edu.sangu.logger;
 
 public enum Level {
     DEBUG, INFO, WARN, ERROR, FATAL

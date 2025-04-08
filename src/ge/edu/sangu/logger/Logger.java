@@ -1,4 +1,4 @@
-package ge.edu.sangu;
+package ge.edu.sangu.logger;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

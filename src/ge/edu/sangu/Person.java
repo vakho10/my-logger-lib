@@ -1,5 +1,8 @@
 package ge.edu.sangu;
 
+import ge.edu.sangu.logger.Level;
+import ge.edu.sangu.logger.Logger;
+
 /**
  * This is a data dummy Person class.
  */

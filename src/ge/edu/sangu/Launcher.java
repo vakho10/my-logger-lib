@@ -1,5 +1,8 @@
 package ge.edu.sangu;
 
+import ge.edu.sangu.logger.Level;
+import ge.edu.sangu.logger.Logger;
+
 public class Launcher {
     private static final Logger log = new Logger(Level.DEBUG, System.out);
 
