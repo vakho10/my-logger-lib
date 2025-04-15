@@ -1,11 +1,8 @@
 package ge.edu.sangu.logger.appender;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
-public class FileAppender implements Appender {
+public class FileAppender extends Appender {
 
     private File file;
 
@@ -18,11 +15,10 @@ public class FileAppender implements Appender {
     }
 
     @Override
-    public void print(String message) {
-        try (var fileOutputStream = new FileOutputStream(file, true);
-             var printStream = new PrintStream(fileOutputStream)) {
-            printStream.println(message);
-        } catch (IOException e) {
+    public OutputStream getOutputStream() {
+        try {
+            return new FileOutputStream(file, true);
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

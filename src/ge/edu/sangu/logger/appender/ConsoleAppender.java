@@ -1,9 +1,11 @@
 package ge.edu.sangu.logger.appender;
 
-public class ConsoleAppender implements Appender {
+import java.io.OutputStream;
+
+public class ConsoleAppender extends Appender {
 
     @Override
-    public void print(String message) {
-        System.out.println(message);
+    public OutputStream getOutputStream() {
+        return System.out;
     }
 }
