@@ -11,6 +11,12 @@ import java.time.LocalDateTime;
  */
 public class Logger {
 
+    private static String PATTERN_LAYOUT = "{date} [{level}]: {message}";
+
+    public static void setPatternLayout(String newPatternLayout) {
+        PATTERN_LAYOUT = newPatternLayout;
+    }
+
     /**
      * Logging level (INFO by default).
      */
@@ -74,7 +80,7 @@ public class Logger {
         }
         // Check if our level is the same or "more important" than default level
         if (this.level.ordinal() <= level.ordinal()) {
-            out.printf("%s [%s]: %s\n", LocalDateTime.now(), level, message);
+            out.printf("%s\n", constructMessage(level, message));
         }
     }
 
@@ -100,5 +106,13 @@ public class Logger {
 
     public void fatal(String message) {
         print(Level.FATAL, message);
+    }
+
+    private String constructMessage(Level level, String message) {
+        String result = PATTERN_LAYOUT;
+        result = result.replace("{date}", LocalDateTime.now().toString());
+        result = result.replace("{level}", level.toString());
+        result = result.replace("{message}", message);
+        return result;
     }
 }
