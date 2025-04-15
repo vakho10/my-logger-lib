@@ -1,8 +1,10 @@
 package ge.edu.sangu.logger;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
+import ge.edu.sangu.logger.appender.Appender;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Generic logger class, which may be used as a parent class for future loggers.
@@ -11,7 +13,12 @@ import java.time.LocalDateTime;
  */
 public class Logger {
 
+    private static List<Appender> APPENDERS = new ArrayList<>();
     private static String PATTERN_LAYOUT = "{date} [{level}]: {message}";
+
+    public static void addAppender(Appender appender) {
+        APPENDERS.add(appender);
+    }
 
     public static void setPatternLayout(String newPatternLayout) {
         PATTERN_LAYOUT = newPatternLayout;
@@ -23,27 +30,12 @@ public class Logger {
     private Level level = Level.INFO;
 
     /**
-     * Customizable output stream where we flush our logging messages.
-     */
-    private final PrintStream out;
-
-    /**
-     * Constructor that takes any output stream.
-     *
-     * @param out output stream where messages will go
-     */
-    public Logger(OutputStream out) {
-        this.out = new PrintStream(out);
-    }
-
-    /**
      * Constructor that takes logger's logging level with output stream.
      *
      * @param level logger's current logging level
      * @param out   output stream where messages will go
      */
-    public Logger(Level level, PrintStream out) {
-        this(out);
+    public Logger(Level level) {
         this.level = level;
     }
 
@@ -80,7 +72,7 @@ public class Logger {
         }
         // Check if our level is the same or "more important" than default level
         if (this.level.ordinal() <= level.ordinal()) {
-            out.printf("%s\n", constructMessage(level, message));
+            APPENDERS.forEach(appender -> appender.print(constructMessage(level, message)));
         }
     }
 
