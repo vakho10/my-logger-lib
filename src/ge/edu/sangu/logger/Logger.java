@@ -5,6 +5,7 @@ import ge.edu.sangu.logger.appender.Appender;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Generic logger class, which may be used as a parent class for future loggers.
@@ -14,7 +15,7 @@ import java.util.List;
 public class Logger {
 
     private static List<Appender> APPENDERS = new ArrayList<>();
-    private static String PATTERN_LAYOUT = "{date} [{level}]: {message}";
+    private static String PATTERN_LAYOUT = "{date} - {name} [{level}]: {message}";
 
     public static void addAppender(Appender appender) {
         APPENDERS.add(appender);
@@ -24,19 +25,30 @@ public class Logger {
         PATTERN_LAYOUT = newPatternLayout;
     }
 
+    private final String name;
+
     /**
      * Logging level (INFO by default).
      */
     private Level level = Level.INFO;
 
+    public Logger(String name) {
+        this.name = name;
+    }
+
     /**
-     * Constructor that takes logger's logging level with output stream.
+     * Constructor that takes logger's name and logging level
      *
+     * @param name logger's name
      * @param level logger's current logging level
-     * @param out   output stream where messages will go
      */
-    public Logger(Level level) {
+    public Logger(String name, Level level) {
+        this(name);
         this.level = level;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Level getLevel() {
@@ -92,8 +104,18 @@ public class Logger {
         print(Level.WARN, message);
     }
 
+    public void error(String message, StackTraceElement[] stackTraceElements) {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        if (stackTraceElements != null) {
+            for (StackTraceElement stackTraceElement : stackTraceElements) {
+                stringJoiner.add(stackTraceElement.toString());
+            }
+        }
+        print(Level.ERROR, message.concat("\n").concat(stringJoiner.toString()));
+    }
+
     public void error(String message) {
-        print(Level.ERROR, message);
+        error(message, null);
     }
 
     public void fatal(String message) {
@@ -105,6 +127,7 @@ public class Logger {
         result = result.replace("{date}", LocalDateTime.now().toString());
         result = result.replace("{level}", level.toString());
         result = result.replace("{message}", message);
+        result = result.replace("{name}", name);
         return result;
     }
 }

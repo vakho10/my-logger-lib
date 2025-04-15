@@ -7,7 +7,7 @@ import ge.edu.sangu.logger.Logger;
  * This is a data dummy Person class.
  */
 public class Person {
-    private static final Logger log = new Logger(Level.DEBUG);
+    private static final Logger log = new Logger(Person.class.getName(), Level.DEBUG);
 
     private String name;
     private int age;
