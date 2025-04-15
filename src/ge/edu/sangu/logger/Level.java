@@ -7,5 +7,5 @@ package ge.edu.sangu.logger;
  * @see <a href="https://technology.amis.nl/software-development/software-engineering/write-debug-level-logs-on-error-print-detailed-logging-only-in-exceptional-circumstances/">Logging Levels</a>
  */
 public enum Level {
-    DEBUG, INFO, WARN, ERROR, FATAL
+    TRACE, DEBUG, INFO, WARN, ERROR, FATAL
 }

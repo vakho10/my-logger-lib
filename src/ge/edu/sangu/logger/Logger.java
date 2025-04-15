@@ -78,6 +78,10 @@ public class Logger {
         }
     }
 
+    public void trace(String message) {
+        print(Level.TRACE, message);
+    }
+
     public void debug(String message) {
         print(Level.DEBUG, message);
     }
