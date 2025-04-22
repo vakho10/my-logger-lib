@@ -18,6 +18,10 @@ public class Configuration {
         APPENDERS.add(appender);
     }
 
+    public static void clearAppenders() {
+        APPENDERS.clear();
+    }
+
     public static Level getLoggingLevel() {
         return LOGGING_LEVEL;
     }

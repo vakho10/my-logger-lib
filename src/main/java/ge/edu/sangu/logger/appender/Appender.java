@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.time.LocalDateTime;
 
 public abstract class Appender {
-    public static final String DEFAULT_PATTERN_LAYOUT = "{date} - {name} [{level}]: {message}";
+    public static final String DEFAULT_PATTERN_LAYOUT = "{date} - {name} [{level}]: {message}{n}";
 
     private String patternLayout = DEFAULT_PATTERN_LAYOUT;
 
@@ -15,10 +15,11 @@ public abstract class Appender {
         String result = patternLayout.replace("{date}", LocalDateTime.now().toString())
                 .replace("{level}", level.toString())
                 .replace("{message}", message)
-                .replace("{name}", name);
+                .replace("{name}", name)
+                .replace("{n}", System.lineSeparator());
 
         var printStream = new PrintStream(getOutputStream());
-        printStream.println(result);
+        printStream.print(result);
     }
 
     public abstract OutputStream getOutputStream();

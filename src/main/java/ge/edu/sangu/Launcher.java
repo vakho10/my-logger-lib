@@ -12,7 +12,7 @@ public class Launcher {
     public static void main(String[] args) {
         Configuration.setLoggingLevel(Level.DEBUG);
         ConsoleAppender consoleAppender = new ConsoleAppender();
-        consoleAppender.setPatternLayout("{name} - {level}: {message} - {date}");
+        consoleAppender.setPatternLayout("{name} - {level}: {message} - {date}{n}");
         Configuration.addAppender(consoleAppender);
         Configuration.addAppender(new FileAppender("output.log"));
         log.info("Application started.");
