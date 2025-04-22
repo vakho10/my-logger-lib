@@ -12,7 +12,9 @@ public abstract class Appender {
     private String patternLayout = DEFAULT_PATTERN_LAYOUT;
 
     public void print(String name, Level level, String message) {
-        String result = patternLayout.replace("{date}", LocalDateTime.now().toString())
+        String p = getPatternLayout();
+        String result = p
+                .replace("{date}", LocalDateTime.now().toString())
                 .replace("{level}", level.toString())
                 .replace("{message}", message)
                 .replace("{name}", name)

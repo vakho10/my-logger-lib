@@ -1,5 +1,8 @@
 package ge.edu.sangu.logger;
 
+import ge.edu.sangu.logger.appender.Appender;
+
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -10,13 +13,23 @@ import java.util.StringJoiner;
 public class Logger {
 
     private final String name;
+    private final List<Appender> appenders;
 
     public Logger(String name) {
+        this(name, null);
+    }
+
+    public Logger(String name, List<Appender> appenders) {
         this.name = name;
+        this.appenders = appenders;
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<Appender> getAppenders() {
+        return appenders;
     }
 
     /**
@@ -35,8 +48,8 @@ public class Logger {
         }
         // Check if our level is the same or "more important" than default level
         if (Configuration.getLoggingLevel().ordinal() <= level.ordinal()) {
-            Configuration.getAppenders()
-                    .forEach(appender -> appender.print(name, level, message));
+            List<Appender> a = getAppenders();
+            a.forEach(appender -> appender.print(name, level, message));
         }
     }
 
