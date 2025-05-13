@@ -5,6 +5,8 @@ import ge.edu.sangu.logger.appender.Appender;
 import java.util.List;
 import java.util.StringJoiner;
 
+import static ge.edu.sangu.logger.Configuration.getAppenders;
+
 /**
  * Generic logger class, which may be used as a parent class for future loggers.
  *
@@ -13,23 +15,13 @@ import java.util.StringJoiner;
 public class Logger {
 
     private final String name;
-    private final List<Appender> appenders;
 
     public Logger(String name) {
-        this(name, null);
-    }
-
-    public Logger(String name, List<Appender> appenders) {
         this.name = name;
-        this.appenders = appenders;
     }
 
     public String getName() {
         return name;
-    }
-
-    public List<Appender> getAppenders() {
-        return appenders;
     }
 
     /**
