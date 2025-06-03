@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +30,7 @@ class LoggerTest {
         Appender appender = mock(Appender.class);
         when(appender.getOutputStream()).thenReturn(byteArrayOutputStream);
         when(appender.getPatternLayout()).thenReturn("{name} - {level}: {message}");
-        log = new Logger("Test", List.of(appender));
+        log = new Logger("Test");
     }
 
     @AfterEach
