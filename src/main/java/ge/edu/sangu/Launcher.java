@@ -16,8 +16,8 @@ public class Launcher {
         consoleAppender.setPatternLayout("{name} - {level}: {message} - {date}{n}");
         Configuration.addAppender(consoleAppender);
         Configuration.addAppender(new FileAppender("output.log"));
-        Configuration.addAppender(new DatabaseAppender("LOGS", "MESSAGE",
-                "jdbc:h2:file:~/my-logs", "admin", "admin"));
+//        Configuration.addAppender(new DatabaseAppender("LOGS", "MESSAGE",
+//                "jdbc:h2:file:~/my-logs", "admin", "admin"));
         log.info("Application started.");
         log.debug("Something is " + 12);
         try {
