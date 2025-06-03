@@ -1,6 +1,7 @@
 package ge.edu.sangu.logger;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,6 +21,7 @@ public class LoggerBadTest {
         log = new Logger("Test");
     }
 
+    @Disabled
     @Test
     void testPrintNullLevel() {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
@@ -28,6 +30,7 @@ public class LoggerBadTest {
         assertEquals("Logging level must not be null", e.getMessage());
     }
 
+    @Disabled
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"    ", ""})

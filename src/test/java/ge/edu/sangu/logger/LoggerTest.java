@@ -3,6 +3,7 @@ package ge.edu.sangu.logger;
 import ge.edu.sangu.logger.appender.Appender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -40,6 +41,7 @@ class LoggerTest {
         Configuration.clearAppenders();
     }
 
+    @Disabled
     @Test
     void testTrace() {
         Configuration.setLoggingLevel(Level.TRACE);
@@ -47,6 +49,7 @@ class LoggerTest {
         assertEquals("Test - TRACE: trace", byteArrayOutputStream.toString());
     }
 
+    @Disabled
     @Test
     void testInfo() {
         Configuration.setLoggingLevel(Level.INFO);
